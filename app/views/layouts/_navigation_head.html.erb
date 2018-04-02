@@ -6,6 +6,7 @@
       <div class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><%= link_to "My Cart" , line_items_path %></li>
+          <li><%= link_to "Past Deals", root_url(past_deals: true) %></li>
 
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -16,6 +17,9 @@
             <ul class="dropdown-menu">
               <li><%= link_to "My Orders", orders_path %></li>
               <li><%= link_to "Logout", logout_path %></li>
+              <% if current_user.admin? %>
+                <li><%= link_to "Administration", admins_root_url %></li>
+              <% end %>
             </ul>
           </li>
 

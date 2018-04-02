@@ -1,14 +1,22 @@
 <h1>Select an address</h1>
 
-<%= form_tag submit_addresses_path do %>
-  <%= collection_radio_buttons :address, :id, @addresses, :id, :full_address  do |b| %>
-    <div class="radio">
-      <%= b.label do %>
-        <%= b.radio_button + b.text %>
-      <% end %>
+<div class="row vertical-offset-100">
+  <div class="col-md-8 col-sm-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><span class="glyphicon glyphicon-home"></span> Address</div>
+      <div class="panel-body">
+        <%= form_tag submit_addresses_path do %>
+          <%= collection_radio_buttons :address, :id, @addresses, :id, :full_address  do |b| %>
+            <div class="radio">
+              <%= b.label do %>
+                <%= b.radio_button + b.text %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= link_to 'Add Address', new_address_path %>
+          <%= submit_tag %>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-  <%= link_to 'Add Address', new_address_path %>
-  <%= submit_tag %>
-<% end %>
-
+  </div>
+</div>

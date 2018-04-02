@@ -29,6 +29,10 @@ class Deal < ApplicationRecord
     update_columns(state: state)
   end
 
+  def update_quantity
+    self.update_columns(quantity: quantity - 1)
+  end
+
   private
     def is_publishable?
       images.size >= 2 && quantity > 10 && number_of_deals_on_same_date < 3
@@ -55,11 +59,6 @@ class Deal < ApplicationRecord
     def number_of_deals_on_same_date
       self.class.published_on(publish_date).size
     end
-
-    def update_quantity
-      self.update_columns(quantity: quantity - 1)
-    end
-
 
     def price_greater_than_discounted_price?
       errors.add(:discounted_price, :dicount_price_greater) unless price >= discounted_price

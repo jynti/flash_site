@@ -7,6 +7,6 @@ $(document).ready(function(){
     container: $('.slideshow-container')
   }
 
-  var slideshowCreator = new SlideshowCreator();
+  var slideshowCreator = new SlideshowCreator(domElements);
   slideshowCreator.init();
 });

@@ -8,7 +8,6 @@ class PaymentsController < ApplicationController
     payment = current_cart.payments.build(user_id: current_user.id, amount: @amount)
     customer = StripeTool.create_customer(current_user.email, params[:stripeToken])
     charge = StripeTool.create_charge(customer.id, @amount)
-
     payment.success
     redirect_to :root, flash: { success:  t('.success') }
     rescue Stripe::CardError => e

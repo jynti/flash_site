@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_29_083709) do
+ActiveRecord::Schema.define(version: 2018_03_31_115107) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2018_03_29_083709) do
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "deal_id"
     t.string "attachment_file_name"
     t.string "attachment_content_type"
     t.integer "attachment_file_size"
@@ -57,7 +56,6 @@ ActiveRecord::Schema.define(version: 2018_03_29_083709) do
     t.string "imageable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["deal_id"], name: "index_images_on_deal_id"
     t.index ["imageable_id", "imageable_type"], name: "index_images_on_imageable_id_and_imageable_type"
   end
 

@@ -12,6 +12,7 @@
  *
  *= require users
  *= require_self
+ *= require_tree .
  */
 
 @import "bootstrap-sprockets";
@@ -22,7 +23,7 @@
 }
 
 #user_name {
-  color: #000;
+  color: #fff;
 }
 
 body {
@@ -30,7 +31,7 @@ body {
 }
 
 .vertical-offset-100{
-    padding-top:200px;
+  padding-top:200px;
 }
 
 .navbar {

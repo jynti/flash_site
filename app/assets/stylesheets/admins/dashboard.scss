@@ -11,4 +11,18 @@ html, body {
   text-align: center;
   height: 100%;
   background-color: black;
+  border-radius: 10px;
+  a {
+    color: grey;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin: 20px;
+    font-size: 32px;
+  }
+
+  a:hover {
+    color: green;
+  }
 }
+

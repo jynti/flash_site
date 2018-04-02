@@ -1,27 +1,44 @@
-<%= form_tag payments_path, method: 'post', id: 'payment-form' do %>
-  <span class="payment-errors"></span>
+<div class="row vertical-offset-100">
+  <div class="col-md-8 col-sm-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading"><span class="glyphicon glyphicon-credit-card"></span> Card Details</div>
+      <div class="panel-body">
+        <%= form_tag payments_path, method: 'post', id: 'payment-form', class: 'form-horizontal' do %>
+          <span class="payment-errors"></span>
 
-  <div class="form-row">
-    <label>
-      <span>Card Number</span>
-      <input type="text" size="20" data-stripe="number"/>
-    </label>
-  </div>
+          <div class="form-group">
+            <%= label_tag :credit_card_number, nil, class: 'col-sm-3 control-label' %>
+            <div class="col-sm-7">
+              <%= text_field_tag :credit_card_number, nil, placeholder: 'Credit Card', class: 'form-control', data: { stripe: 'number' } %>
+            </div>
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span>CVC</span>
-      <input type="text" size="4" data-stripe="cvc"/>
-    </label>
-  </div>
+          <div class="form-group">
+            <%= label_tag :CVC, nil, class: 'col-sm-3 control-label' %>
+            <div class="col-sm-7">
+              <%= number_field_tag :CVC, nil, placeholder: 'CVC', class: 'form-control', data: { stripe: 'cvc' } %>
+            </div>
+          </div>
 
-  <div class="form-row">
-    <label>
-      <span>Expiration (MM/YYYY)</span>
-      <input type="text" size="2" data-stripe="exp-month"/>
-    </label>
-    <span> / </span>
-    <input type="text" size="4" data-stripe="exp-year"/>
+          <div class="form-group">
+            <%= label_tag :Expiration, nil, class: 'col-sm-3 control-label' %>
+            <div class="col-sm-3">
+              <%= select_month Date.today, { use_month_numbers: true }, { class: 'form-control', data: { stripe: 'exp-month' } } %>
+            </div>
+            <div class="col-sm-4">
+              <%= select_year Date.today, { start_year: Date.today.year, end_year: 2060 }, { class: 'form-control', data: { stripe: 'exp-year' } } %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <%= submit_tag 'Submit', class: 'btn btn-success btn-sm' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <button type="submit">Submit Payment</button>
-<% end %>
+</div>
+
+<%= javascript_include_tag 'payments' %>

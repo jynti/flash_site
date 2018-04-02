@@ -15,7 +15,6 @@ module Admins
 
     def create
       @deal = Deal.new(deal_params.merge(created_by: current_user.id))
-      byebug
       if @deal.save
         flash[:success] = t('.success')
         redirect_to admins_deals_url

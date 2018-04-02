@@ -1,4 +1,4 @@
-<% if @published_deals.exists? %>
+<% if @published_deals.exists? && !params[:past_deals] %>
   <h1>Present Deals</h1>
   <%= render 'deals', deals: @published_deals %>
 <% else %>
