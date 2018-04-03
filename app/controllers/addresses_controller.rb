@@ -1,5 +1,4 @@
 class AddressesController < ApplicationController
-
   def index
     @addresses = current_user.addresses
     @address = delivered_orders.empty? ? @addresses.first : delivered_orders.last.address
@@ -9,8 +8,7 @@ class AddressesController < ApplicationController
   def create
     @address = current_user.addresses.build(address_params)
     if @address.save
-      flash.now[:success] = t('.success')
-      redirect_to addresses_path
+      redirect_to addresses_path, flash: { success: t('.success') }
     else
       flash.now[:warning] = t('.failure')
       render :new

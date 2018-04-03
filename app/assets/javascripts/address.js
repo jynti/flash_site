@@ -1,7 +1,6 @@
 //= require dynamic_state_finder.js
 
 $(document).ready(function(){
-  console.log("here")
   var domElements = {
     state: $('#address_state_id'),
     country: $('#address_country_id')

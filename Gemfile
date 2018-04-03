@@ -33,8 +33,8 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails', '~> 4.3.1'
-gem "paperclip", "~> 5.2.1"
-gem 'stripe'
+gem "paperclip", '~> 5.2.1'
+gem 'stripe', "~>3.11.0"
 
-gem 'state_machines'
-gem 'state_machines-activerecord'
+gem 'state_machines', '0.5.0'
+gem 'state_machines-activerecord', '~>0.5.0'

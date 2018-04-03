@@ -15,13 +15,12 @@ module DealsHelper
   end
 
   def buy_deal(deal)
-    if deal.quantity == 0
-      content_tag :p, 'SOLD OUT'
+    if !deal.quantity
+      content_tag :p, t('.sold_out')
     elsif deal.over?
-      content_tag :p, 'Deal Over'
+      content_tag :p, t('.deal_over')
     else
-      submit_tag "Buy", class: 'btn btn-success'
-      # content_tag :p, deal.quantity
+      submit_tag t('.buy'), class: 'btn btn-success'
     end
   end
 

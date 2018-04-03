@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   get '/live_deal/:id', to: 'welcome#live_deal'
 
+  scope '/countries/:country_id' do
+    resources :states, only: :index
+  end
+
   resources :payments
 
   namespace :admins do

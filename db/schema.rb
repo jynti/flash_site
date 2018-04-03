@@ -38,13 +38,14 @@ ActiveRecord::Schema.define(version: 2018_03_31_115107) do
     t.string "description"
     t.decimal "price", precision: 10, default: "0"
     t.decimal "discounted_price", precision: 10, default: "0"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.date "publish_date"
     t.integer "state"
     t.string "code"
     t.bigint "created_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["state"], name: "index_deals_on_state"
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -78,12 +79,12 @@ ActiveRecord::Schema.define(version: 2018_03_31_115107) do
     t.datetime "updated_at", null: false
     t.string "state"
     t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["state"], name: "index_orders_on_state"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "card_token"
-    t.bigint "user_id"
+    t.string "token"
     t.decimal "amount", precision: 10, default: "0"
     t.string "failure_message"
     t.datetime "created_at", null: false
@@ -91,7 +92,6 @@ ActiveRecord::Schema.define(version: 2018_03_31_115107) do
     t.string "state"
     t.bigint "order_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
-    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "states", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

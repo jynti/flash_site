@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require activestorage
 //= require bootstrap-sprockets
-//= require live_deals.js

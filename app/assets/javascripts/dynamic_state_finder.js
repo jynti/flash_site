@@ -4,23 +4,22 @@ function DynamicStateFinder(domElements){
 }
 
 DynamicStateFinder.prototype.init = function(){
-  this.onSelectChange();
+  this.onFindStates();
 };
 
-DynamicStateFinder.prototype.onSelectChange = function(){
+DynamicStateFinder.prototype.onFindStates = function(){
   var _this = this;
-  var states = this.states_dropdown.html();
   this.country_dropdown.on("change", function(event){
-    var $this = $(this);
-    var selected_country = $this.find(":selected").text();
-    $(".state_text_field").remove();
-    var options = $(states).filter("optgroup[label='" + selected_country + "']").html();
-    if(options){
-      _this.states_dropdown.attr('id', 'address_state_id');
-      _this.states_dropdown.show().html(options);
-    } else {
-      _this.states_dropdown.removeAttr('id').hide();
-      _this.states_dropdown.parents('div').eq(0).append($("<input type='text'>").addClass('state_text_field').addClass('form-control').attr('id', 'address_state_id'));
-    }
+    var country_id = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: '/countries/' + country_id + '/states',
+      success: function(data){
+        _this.states_dropdown.append()
+        for(var i = 0; data.length; i++){
+          // $('<option>').val(data)
+        }
+      }
+    });
   });
-};
+}

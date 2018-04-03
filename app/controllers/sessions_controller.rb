@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   before_action :redirect_when_logged_in, only: [:new, :create]
   before_action :find_user, only: :create
+  skip_before_action :ensure_current_user
 
   def new
   end

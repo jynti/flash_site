@@ -1,10 +1,16 @@
 en:
 
-  login: 'Log In!'
-  signup: 'Sign Up!'
+  login: 'Log In'
+  signup: 'Sign Up'
   forgot_password: 'Forgot Password?'
   submit: 'Submit Email'
   not_registered: 'Not Registered?'
+  my_orders: 'My Orders'
+  logout: 'Logout'
+  administration: 'Admin Section'
+  my_cart: 'My Cart'
+  past_deals: 'Past Deals'
+  ensure_current_user: 'Please login before'
 
   users:
     create:
@@ -82,11 +88,22 @@ en:
     create:
       success: 'Address successfully created'
       failure: 'Address was not saved. Try again'
+    index:
+      new: 'New Address'
+      to_checkout: 'Go To Checkout'
+    new:
+      create: 'Create Address'
 
   payments:
     create:
       success: "Your order has been successfully created"
     choose_address: 'Choose an address first'
+
+  welcome:
+    live_deal_quantity:
+      buy: 'Buy'
+      deal_over: 'Deal Over'
+      sold_out: 'Sold Out'
 
   activerecord:
     errors:

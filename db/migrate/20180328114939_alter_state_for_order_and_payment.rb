@@ -3,6 +3,7 @@ class AlterStateForOrderAndPayment < ActiveRecord::Migration[5.2]
     change_table :orders do |t|
        t.remove :status
        t.column :state, :string
+       t.index :state
     end
 
     change_table :payments do |t|

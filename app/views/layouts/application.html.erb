@@ -4,22 +4,17 @@
     <title>FlashSite</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "https://js.stripe.com/v2/" %>
-    <script type="text/javascript">
-      Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');
-    </script>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
- <%= render 'layouts/navigation_head' %>
-
+  <%= render 'layouts/navigation_head' %>
   <div class="container">
     <body>
       <div>
-          <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, class: "alert alert-#{name}" %>
-          <% end %>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+        <% end %>
       </div>
       <%= yield %>
     </body>

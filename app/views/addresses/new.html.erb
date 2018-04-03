@@ -26,7 +26,9 @@
   <div class="field form-group">
     <%= f.label :state, class: 'col-sm-2 control-label' %>
     <div class="col-sm-5">
-      <%= f.grouped_collection_select :state_id, @countries, :states, :name, :id, :name, { include_blank: true }, { class: 'form-control' } %>
+      <div class="states">
+        <%= f.collection_select :state_id, {}, :id, :name, { prompt: true }, { class: 'form-control' } %>
+      </div>
       <%= error_message_on f.object, :state %>
     </div>
   </div>
@@ -49,7 +51,7 @@
 
   <div class="actions form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <%= submit_tag 'Create', class: 'btn btn-primary' %>
+      <%= submit_tag t('.create'), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>

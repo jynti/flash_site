@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    payment = current_cart.payments.build(user_id: current_user.id, amount: @amount)
+    payment = current_cart.payments.build(amount: @amount)
     customer = StripeTool.create_customer(current_user.email, params[:stripeToken])
     charge = StripeTool.create_charge(customer.id, @amount)
     payment.success

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :ensure_current_user
   before_action :redirect_when_logged_in
   before_action :find_user_by_confirm_token, only: :confirm_email
   before_action :find_user_by_email, only: :send_reset_password_email

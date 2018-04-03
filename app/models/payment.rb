@@ -1,6 +1,5 @@
 class Payment < ApplicationRecord
   belongs_to :order
-  belongs_to :user
 
   state_machine :state, initial: :balance_due do
     after_transition :balance_due => :paid, do: :set_order_success
@@ -26,7 +25,7 @@ class Payment < ApplicationRecord
   end
 
   def save_charge(charge)
-    self.card_token = charge.id
+    self.token = charge.id
     self.failure_message = charge.failure_message
     save
   end
