@@ -1,0 +1,14 @@
+<h1><%= @deal.title %></h1>
+<div class="deal-information">
+  <p><span class="deal-attribute">Description:</span> <%= @deal.description %></p>
+  <p><span class="deal-attribute">Price:</span><%= @deal.price %></p>
+  <p><span class="deal-attribute">Discounted Price:</span><%= @deal.discounted_price %></p>
+  <span class="deal-attribute">Images:</span>
+  <div>
+    <% @deal.images.each do |image| %>
+      <%= image_tag image.attachment.url(:medium) %>
+    <% end %>
+  </div>
+</div>
+
+

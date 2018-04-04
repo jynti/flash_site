@@ -2,11 +2,10 @@
   <% deals.each do |deal| %>
     <div class="col-md-4">
       <div class="thumbnail ">
-
         <div class="slideshow-container center-block">
           <% deal.images.each do |image| %>
             <div class="myslides">
-               <%= image_tag image.attachment.url(:medium) %>
+              <%= link_to image_tag(image.attachment.url(:medium)), deal_path(deal.code) %>
             </div>
           <% end %>
         </div>

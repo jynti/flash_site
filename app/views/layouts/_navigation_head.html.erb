@@ -5,9 +5,10 @@
     </div>
     <div class="nav navbar-nav navbar-right">
       <% if current_user %>
+        <% if !current_user.admin? %>
         <li><%= link_to t('my_cart') , line_items_path %></li>
         <li><%= link_to t('past_deals'), root_url(past_deals: true) %></li>
-
+        <% end %>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <strong id="user_name">

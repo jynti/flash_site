@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+
+  before_action :ensure_current_cart_exists
   def index
     @addresses = current_user.addresses
     @address = delivered_orders.empty? ? @addresses.first : delivered_orders.last.address
@@ -32,5 +34,9 @@ class AddressesController < ApplicationController
 
     def delivered_orders
       current_user.orders.where(state: :delivered)
+    end
+
+    def ensure_current_cart_exists
+      redirect_to :root, flash: { warning: t('welcome.buy_item') } unless current_cart.total
     end
 end

@@ -2,7 +2,7 @@ class LineItem < ApplicationRecord
   belongs_to :order
   belongs_to :deal
 
-  validate :only_one_quantity_of_deal?
+  # validate :only_one_quantity_of_deal?
 
   after_create :update_cart_total, :decrement_deal_quantity
 

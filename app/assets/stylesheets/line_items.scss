@@ -1,7 +1,27 @@
 .amount {
-  float: right;
+  text-align: right;
+  color: #bb4358;
+}
+
+table {
+  background: #d09191;
 }
 
 thead {
   font-weight: bold;
+}
+
+.checkout {
+  border: 2px solid #ffcccc;
+  padding: 10px;
+  border-radius: 15px;
+  color: pink;
+  background: #84546b;
+  cursor: pointer;
+
+  &:hover {
+    background: #460424;
+    text-decoration: none;
+    color: pink;
+  }
 }

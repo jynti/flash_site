@@ -2,12 +2,17 @@ class DealsScheduler
   def initialize(date)
     @date = date
     @present_deals = Deal.published_on(@date).publishable
-    @old_deals = Deal.published_on(@date.prev_day).published
-end
+    @old_deals = Deal.published_before(@date)
+  end
 
   def publish
-    unpublish_old_deals
-    publish_deals
+    ApplicationRecord.transaction do
+      unpublish_old_deals
+      publish_deals
+    end
+    puts "Deals successfully updated"
+  rescue => e
+    puts "Deals not updated. Try again"
   end
 
   def unpublish_old_deals

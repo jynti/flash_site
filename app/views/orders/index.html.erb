@@ -6,7 +6,6 @@
     <th>Loyality Discount</th>
     <th>Amount</th>
     <th>Delivery Address</th>
-    <th>Orders state</th>
   </thead>
 
   <tbody>
@@ -16,7 +15,6 @@
       <td><%= order.loyality_discount %></td>
       <td><%= order.total - order.loyality_discount %></td>
       <td><%= Address.find_by(id: order.address_id).full_address if order.address_id %></td>
-      <td><%= order.state %></td>
     </tr>
     <% end %>
   </tbody>

@@ -15,9 +15,8 @@ DynamicStateFinder.prototype.onFindStates = function(){
       type: 'GET',
       url: '/countries/' + country_id + '/states',
       success: function(data){
-        _this.states_dropdown.append()
-        for(var i = 0; data.length; i++){
-          // $('<option>').val(data)
+        for(var i = 0; i < data.length; i++){
+          $('<option />', { value: data[i].id, text: data[i].name }).appendTo(_this.states_dropdown);
         }
       }
     });

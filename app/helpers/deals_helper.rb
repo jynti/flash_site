@@ -15,7 +15,9 @@ module DealsHelper
   end
 
   def buy_deal(deal)
-    if !deal.quantity
+    if bought(deal)
+      content_tag :span, nil, class: 'glyphicon glyphicon-ok'
+    elsif !deal.quantity
       content_tag :p, t('.sold_out')
     elsif deal.over?
       content_tag :p, t('.deal_over')
@@ -24,4 +26,16 @@ module DealsHelper
     end
   end
 
+  private
+    def bought(deal)
+      bought = false
+      if current_user
+        current_user.orders.each do |order|
+          if order.deals.include?(deal)
+            bought = true
+          end
+        end
+      end
+      bought
+    end
 end

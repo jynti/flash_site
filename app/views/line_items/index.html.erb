@@ -2,21 +2,23 @@
 
 <table class="table-bordered table-hover table">
   <thead>
-    <th>No.</th>
-    <th>Photo</th>
     <th>Title</th>
-    <th>Price</th>
+    <th>Photo</th>
+    <th>Actual Price</th>
+    <th>Discounted Price</th>
     <th>Quantity</th>
+    <th>Remove?</th>
   </thead>
 
   <tbody>
     <% @line_items.each do |line_item| %>
       <tr>
-        <td><%= line_item.deal.code %></td>
-        <td><%= image_tag line_item.deal.images.first.attachment.url(:thumb) %></td>
         <td><%= line_item.deal.title %></td>
+        <td><%= image_tag line_item.deal.images.first.attachment.url(:thumb) %></td>
+        <td><%= line_item.deal.price %></td>
         <td><%= line_item.deal.discounted_price %></td>
         <td><%= line_item.deal.quantity %></td>
+        <td><%= link_to 'Remove Item', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,7 +41,7 @@
     </div>
   </div>
 
-  <%= link_to 'Checkout', addresses_path %>
+  <%= link_to 'Checkout', addresses_path, class: "checkout pull-right" %>
 <% end %>
 
 

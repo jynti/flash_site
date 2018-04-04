@@ -16,17 +16,24 @@ class Payment < ApplicationRecord
 
   def set_order_success
     order.pay
-    PaymentMailer.successful_payment(user.id).deliver_later
+    PaymentMailer.successful_payment(order.user.id).deliver_later
+    save_charge
   end
 
   def set_order_failure
     order.mark_fail
-    PaymentMailer.failed_payment(user.id).deliver_later
+    PaymentMailer.failed_payment(order.user.id).deliver_later
+    save_charge
   end
 
-  def save_charge(charge)
-    self.token = charge.id
-    self.failure_message = charge.failure_message
+  def save_charge
+    self.token = @charge.id
+    self.failure_message = @charge.failure_message
     save
+  end
+
+  def handle_stripe_transaction(token)
+    customer = StripeTool.create_customer(order.user.email, token)
+    @charge = StripeTool.create_charge(customer.id, amount)
   end
 end

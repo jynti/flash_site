@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     post :submit, on: :collection
   end
 
-  get '/live_deal/:id', to: 'welcome#live_deal'
+  get '/live_deal', to: 'welcome#live_deal'
 
   scope '/countries/:country_id' do
     resources :states, only: :index

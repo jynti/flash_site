@@ -11,6 +11,7 @@ en:
   my_cart: 'My Cart'
   past_deals: 'Past Deals'
   ensure_current_user: 'Please login before'
+  password_format_incorrect: 'format is incorrect'
 
   users:
     create:
@@ -36,6 +37,12 @@ en:
     create:
       success: 'Thank you for signing up! Please confirm your email address to continue'
       failure: 'Try again'
+    new:
+      first_name: 'First Name *'
+      last_name: 'Last Name *'
+      email: 'Email *'
+      password: 'Password *'
+      password_confirmation: 'Password Confirmation *'
 
   sessions:
     create:
@@ -49,7 +56,10 @@ en:
   line_items:
     login_first: 'Login to create a cart'
     create:
-      success: "Line Item successfully added"
+      success: 'Line Item successfully added'
+    destroy:
+      success: 'Item successfully removed from your order'
+      failure: 'Item could not be removed from your order. Try again'
 
   user_mailer:
     registration_mail:
@@ -57,6 +67,7 @@ en:
       welcome: 'Welcome to Flash Site,'
       success: 'You have successfully signed up to Flash Site '
       link: 'Thanks for registering! To confirm your registration click the URL below.'
+      valid_until: 'This link is only valid for 1 day'
     forgot_password:
       subject: 'Forgot password?'
       greeting: 'Hello'
@@ -76,15 +87,17 @@ en:
     deals:
       not_found: 'Deal not found'
       create:
-        success: "Deal successfully created"
-        failure: "Deal not created. Try again"
+        success: 'Deal successfully created'
+        failure: 'Deal not created. Try again'
       update:
-        success: "Deal successfully updated"
+        success: 'Deal successfully updated'
+        failure: 'Try again'
       destroy:
-        success: "Deal successfully destroyed"
-        failure: "Deal not destroyed. Try again"
+        success: 'Deal successfully destroyed'
+        failure: 'Deal not destroyed. Try again'
 
   addresses:
+    buy_item: 'Please buy items first'
     create:
       success: 'Address successfully created'
       failure: 'Address was not saved. Try again'
@@ -96,10 +109,12 @@ en:
 
   payments:
     create:
-      success: "Your order has been successfully created"
+      success: 'Your order has been successfully created'
     choose_address: 'Choose an address first'
 
   welcome:
+    index:
+      no_published_deals: 'No Present Deals today'
     live_deal_quantity:
       buy: 'Buy'
       deal_over: 'Deal Over'
@@ -113,8 +128,8 @@ en:
             discounted_price:
               dicount_price_greater: "can't be greater than price"
             base:
-              not_publishable: "Deal is not publishable"
-              publish_date_readonly: "Publish date cannot be changed now"
+              not_publishable: 'Deal is not publishable'
+              publish_date_readonly: 'Publish date cannot be changed now'
         line_item:
           attributes:
             base:

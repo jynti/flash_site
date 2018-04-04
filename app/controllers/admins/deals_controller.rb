@@ -1,7 +1,6 @@
 module Admins
   class DealsController < BaseController
     before_action :find_deal, only: [:edit, :update, :destroy]
-
     def index
       @deals = Deal.includes(:images)
     end
@@ -27,7 +26,7 @@ module Admins
       if @deal.update(deal_params)
         redirect_to admins_deals_url, flash: { success: t('.success') }
       else
-        flash.now[:warning] = @deal.errors[:base].to_sentence
+        flash.now[:warning] = t('.failure')
         render :edit
       end
     end

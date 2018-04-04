@@ -1,9 +1,13 @@
 class User < ApplicationRecord
   FORGOT_PASSWORD_LINK_EXPIRY_TIME = 24.hours
+  REGISTRATION_MAIL_LINK_EXPIRY_TIME = 24.hours
+  PASSWORD_FORMAT = /\A\w+\Z/
   validates :first_name, :last_name, :email, presence: true
   validates :first_name, :last_name, length: { maximum: 255 }, allow_blank: true
   validates :email, uniqueness: true, allow_blank: true
   validates :password, :password_confirmation, presence: true, on: :update
+  validates :password, format: { with: PASSWORD_FORMAT, message: I18n.t('.password_format_incorrect') }
+  validates :password, length: { within: 10..40 }
   validates :type, inclusion: { in: %w(Customer Admin) }
 
   has_many :orders
@@ -24,6 +28,10 @@ class User < ApplicationRecord
 
   def reset_password_link_expired?
     Time.current - reset_password_token_set_at > FORGOT_PASSWORD_LINK_EXPIRY_TIME
+  end
+
+  def registration_mail_link_expired?
+    Time.current - confirm_token_set_at > REGISTRATION_MAIL_LINK_EXPIRY_TIME
   end
 
   def send_forgot_password_email

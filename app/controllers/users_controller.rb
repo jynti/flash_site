@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :ensure_current_user
+  skip_before_action :ensure_current_user_exists
   before_action :redirect_when_logged_in
   before_action :find_user_by_confirm_token, only: :confirm_email
   before_action :find_user_by_email, only: :send_reset_password_email
@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   before_action :find_user_by_id, only: :update_password
 
   def confirm_email
-    if @user && @user.activate_email
-      redirect_to login_url, flash: { success: t('.success') }
+    if @user && @user.activate_email && !@user.registration_mail_link_expired?
+      set_session
+      redirect_to root_url, flash: { success: t('.success') }
     else
       redirect_to root_url, flash: {warning: t('.failure')}
     end
@@ -73,5 +74,9 @@ class UsersController < ApplicationController
 
     def find_user_by_reset_password_token
       @user = User.find_by(reset_password_token: params[:id])
+    end
+
+    def set_session
+      session[:user_id] = @user.id
     end
 end

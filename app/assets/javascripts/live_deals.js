@@ -7,21 +7,15 @@ LiveDeal.prototype.init = function(){
 };
 
 LiveDeal.prototype.sendAjaxForEachDeal = function(){
-  $.each(this.deals, function(key, value){
-    var id = $(value).data("deal");
-
-    setInterval(function() {
-      $.ajax({
-        type: "GET",
-        url: "/live_deal/" + id
-      });
-    }, 5000);
-  });
+  setInterval(function() {
+    $.ajax({
+      type: "GET",
+      url: "/live_deal"
+    });
+  }, 10000);
 };
 
 $(document).ready(function() {
-  var deals = $('.deal-buy');
-
   var domElements = {
     deals: $('.deal-buy')
   }

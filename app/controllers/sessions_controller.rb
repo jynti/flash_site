@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   before_action :redirect_when_logged_in, only: [:new, :create]
   before_action :find_user, only: :create
-  skip_before_action :ensure_current_user
+  skip_before_action :ensure_current_user_exists
 
   def new
   end
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    reset_session
     cookies.delete :user_id
     redirect_to root_url, flash: { success: t('.logged_out') }
   end

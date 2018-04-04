@@ -7,6 +7,7 @@ class Deal < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, :description, :price, :discounted_price, :quantity, :publish_date, presence: true
+  validates :price, numericality: { greater_than: 100 }
   validate :price_greater_than_discounted_price?
   validates :description, length: { maximum: 255 }
   validate :check_state_and_publish_date, on: :update
@@ -15,6 +16,7 @@ class Deal < ApplicationRecord
   after_update :update_state
 
   scope :published_on, -> (date = Date.current){ where(publish_date: date) }
+  scope :published_before, -> (date = Date.current){ where('publish_date<?', date)}
   scope :published_deals, -> { includes(:images).where(state: :published) }
   scope :past_deals, -> { includes(:images).where(state: :over).order(publish_date: :desc) }
 

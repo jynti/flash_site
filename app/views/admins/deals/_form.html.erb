@@ -1,5 +1,9 @@
 <%= form_for [:admins, @deal],  html: {class: 'form-horizontal'} do |f| %>
 
+  <% unless @deal.new_record? %>
+    <div class="status">Status: <%= @deal.state %></div>
+  <% end %>
+
   <div class="field form-group">
     <%= f.label :title, class: 'col-sm-2 control-label' %>
     <div class="col-sm-5">

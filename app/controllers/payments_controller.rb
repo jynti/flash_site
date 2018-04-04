@@ -1,20 +1,20 @@
 class PaymentsController < ApplicationController
 
   before_action :set_amount, only: :create
+  before_action :ensure_current_user_exists
+
   def new
   end
 
   def create
     payment = current_cart.payments.build(amount: @amount)
-    customer = StripeTool.create_customer(current_user.email, params[:stripeToken])
-    charge = StripeTool.create_charge(customer.id, @amount)
+
+    payment.handle_stripe_transaction(params[:stripeToken])
     payment.success
     redirect_to :root, flash: { success:  t('.success') }
     rescue Stripe::CardError => e
       payment.failure
       redirect_to :root, flash: { warning: e.message }
-    ensure
-      payment.save_charge(charge)
   end
 
 
