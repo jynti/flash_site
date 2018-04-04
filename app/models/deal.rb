@@ -16,7 +16,7 @@ class Deal < ApplicationRecord
   after_update :update_state
 
   scope :published_on, -> (date = Date.current){ where(publish_date: date) }
-  scope :published_before, -> (date = Date.current){ where('publish_date<?', date)}
+  scope :published_before, -> (date = Date.current){ where('publish_date<?', date).where(state: :published) }
   scope :published_deals, -> { includes(:images).where(state: :published) }
   scope :past_deals, -> { includes(:images).where(state: :over).order(publish_date: :desc) }
 

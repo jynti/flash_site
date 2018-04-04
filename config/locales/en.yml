@@ -143,4 +143,4 @@ in:
         delimiter: ','
         separator: '.'
         precision: 2
-        format: '%n %u'
+        format: '%u %n'

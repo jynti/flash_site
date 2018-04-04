@@ -7,7 +7,7 @@ function SlideshowCreator(domElements){
 SlideshowCreator.prototype.hideOtherImagesExcept = function(images){
   images.hide();
   images.eq(this.currentIndex).show();
-}
+};
 
 SlideshowCreator.prototype.onClickFunction = function(index, direction){
   images = this.getImages(index);
@@ -16,7 +16,7 @@ SlideshowCreator.prototype.onClickFunction = function(index, direction){
     this.currentIndex += images.length;
   }
   this.hideOtherImagesExcept(images);
-}
+};
 
 SlideshowCreator.prototype.clickArrowButtonsFunctionality = function(index){
   var _this = this;

@@ -11,7 +11,10 @@
         </div>
 
         <div class="caption">
-          <h4 class="pull-left"><%= number_to_currency deal.discounted_price, locale: :in %></h4>
+          <h4 class="pull-left">
+            <strike><%= number_to_currency deal.price, locale: :in %></strike><br>
+            <div class="discounted_price"><%= number_to_currency deal.discounted_price, locale: :in %></div>
+          </h4>
 
           <%= form_tag line_items_path do %>
             <%= hidden_field_tag :deal_id, deal.id %>
