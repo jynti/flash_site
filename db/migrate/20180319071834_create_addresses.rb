@@ -8,6 +8,8 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :street1
       t.string :street2
       t.string :pincode
+
+      t.timestamps
     end
   end
 end
